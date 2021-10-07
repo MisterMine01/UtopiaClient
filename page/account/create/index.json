@@ -1,0 +1,8 @@
+{
+	"page": "create.html",
+	"js": [
+		"../account.js"
+	],
+	"css": [
+	]
+}

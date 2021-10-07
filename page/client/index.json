@@ -1,0 +1,10 @@
+{
+	"page": "client.html",
+	"js": [
+		"client.root.js",
+		"client.main.js",
+		"client.needed.js"
+	],
+	"css": [
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"page": "language.html",
+	"js": [
+		"../launcher.root.js",
+		"../launcher.rod.js",
+		"launcher.language.js"
+	],
+	"css": [
+	]
+}

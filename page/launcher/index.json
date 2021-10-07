@@ -1,0 +1,9 @@
+{
+	"page": "launcher.html",
+	"js": [
+		"launcher.root.js",
+		"launcher.rod.js",
+		"launcher.main.js"
+	],
+	"css": []
+}
