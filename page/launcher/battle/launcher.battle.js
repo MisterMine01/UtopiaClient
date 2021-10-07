@@ -2,8 +2,9 @@ Launcher.battle = new class {
 	constructor(get_id) {
 		this.get_id = get_id;
 		this.battle_interval = setInterval(function() {
-			localforage.getItem("Utopia.Launcher.server", function(err, value) {
-				if (page_loaded == "launcher/battle") {
+			if (page_loaded == "launcher/battle") {
+				localforage.getItem("Utopia.Launcher.server", function(err, value) {
+				
 					var already_created_value = []
 					let already_created = document.getElementById("launcher.battle.battle_list")
 					for (let item of already_created.children) {
@@ -45,8 +46,8 @@ Launcher.battle = new class {
 							}());
 						}
 					}
-				}
-			});
+				});
+			}
 		}, 100);
 	}
 			

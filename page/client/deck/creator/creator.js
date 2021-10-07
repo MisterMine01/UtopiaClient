@@ -1,22 +1,36 @@
 Game.deck.creator = new class {
 	constructor() {
 		this.deck = {};
+		if (Game.deck.deck != "") {
+			localforage.getItem("Utopia.[" + Game_data.battle_name + "].Deck", function(err, value) {
+				for (let item of Object.keys(value[Game.deck.deck])) {
+					for (let i=0; i<value[Game.deck.deck][item]; i++) {
+						console.log(item);
+						Game.deck.creator.add_card(item)
+					}
+				}
+				document.getElementById("client.deck.creator.deck_name").value = Game.deck.deck;
+				Game.deck.deck = 0
+			});
+		}
 	}
 	
 	create_deck() {
-		var name = document.getElementById("client.deck.creator.deck_name").innerHTML;
+		var name = document.getElementById("client.deck.creator.deck_name").value;
 		if (name=="") {
 			return;
 		}
+		var deck = this.deck;
 		localforage.getItem("Utopia.[" + Game_data.battle_name+"].Deck", function(err, value) {
 			if (value == null) {
 				var data = {};
 			} else {
 				var data = value;
 			}
-			data[name] = this.deck;
+			data[name] = deck;
 			localforage.setItem("Utopia.[" + Game_data.battle_name+"].Deck", data);
 		});
+		change_page("client");
 	}
 	
 	delete_card(name) {
