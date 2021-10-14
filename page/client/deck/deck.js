@@ -54,11 +54,11 @@ Game.deck = new class {
 		change_page("client/deck/creator")
 	}
 	
-	delete_server(value) {
+	delete_deck(name) {
 		localforage.getItem("Utopia.[" + Game_data.battle_name + "].Deck", function(err, value) {
-			if (Object.keys(value).includes(value)) {
-				delete value[value];
-				localforage.setItem("Utopia.Launcher.server", value);
+			if (Object.keys(value).includes(name)) {
+				delete value[name];
+				localforage.setItem("Utopia.[" + Game_data.battle_name + "].Deck", value);
 			}
 		});
 	}
