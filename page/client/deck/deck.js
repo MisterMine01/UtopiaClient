@@ -63,5 +63,5 @@ Game.deck = new class {
 		});
 	}
 	
-	create_deck() {change_page("client/deck/creator")}
+	create_deck() {this.deck="0_RELOAD_0"; change_page("client/deck/creator")}
 }();

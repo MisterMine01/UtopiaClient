@@ -3,6 +3,7 @@ Game.deck.creator = new class {
 		this.deck = {};
 		setInterval(function() {
 			if (page_loaded=="client/deck/creator") {
+				var data = Game.deck.deck;
 				localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].Bdd", function(err, value) {
 					var already_created_value = []
 					let already_created = document.getElementById("client.deck.creator.all_card")
@@ -19,20 +20,24 @@ Game.deck.creator = new class {
 							Game.deck.creator.create_card("client.deck.creator.all_card", item, "Game.deck.creator.add_card('" + item + "')");
 						}
 					}
-					if (Game.deck.deck != "") {
-						console.log(Game.deck.deck)
-						localforage.getItem("Utopia.[" + Game_data.battle_name + "].Deck", function(err, value) {
-							for (let item of Object.keys(value[Game.deck.deck])) {
-								for (let i=0; i<value[Game.deck.deck][item]; i++) {
-									console.log(item);
-									Game.deck.creator.add_card(item)
+					if (data != "") {
+						Game.deck.creator.deck = {};
+						if (data != "0_RELOAD_0") {
+							console.log(Game.deck.deck)
+							localforage.getItem("Utopia.[" + Game_data.battle_name + "].Deck", function(err, value) {
+								console.log(Game.deck.deck);
+								for (let item of Object.keys(value[data])) {
+									for (let i=0; i<value[data][item]; i++) {
+										console.log(item);
+										Game.deck.creator.add_card(item)
+									}
 								}
-							}
-							document.getElementById("client.deck.creator.deck_name").value = Game.deck.deck;
-							Game.deck.deck = ""
-						});
+								document.getElementById("client.deck.creator.deck_name").value = data;
+							});
+						}
+						Game.deck.deck = ""
+						
 					}
-					
 				});
 			}
 		},1000);
