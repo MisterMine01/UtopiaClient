@@ -1,6 +1,6 @@
 var ClientApi = new class {
 	constructor() {
-		this.rcjs = new RcJsApi("http://gigly.mygamesonline.org/API2/") //"http://github/UtopiaPrincipaleServer/");
+		this.rcjs = new RcJsApi("http://github/UtopiaPrincipaleServer/");
 	}
 	CreateAccount(username, passw) {
 		return this.rcjs.getJsBySystem(
