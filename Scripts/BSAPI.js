@@ -38,9 +38,9 @@ class BattleSystemApi {
 			"GetBattle",
 			{
 				"BattleId": BattleId,
-				"PlayerId": PlayerId
+				"PlayerId": PlayerId,
 				"System": System,
-				"CardId"; CardId
+				"CardId": CardId
 			}
 		)
 	}
