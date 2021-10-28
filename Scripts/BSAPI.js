@@ -1,55 +1,57 @@
 class BattleSystemApi {
-	constructor(Server) {
+	constructor(Server, BattleId, PlayerId) {
 		this.rcjs = new RcJsApi(Server);
+		this.BattleId = BattleId;
+		this.PlayerId = PlayerId;
 	}
 	
-	Start(BattleId, PlayerId, ClientVersion, BddVersion) {
+	Start(ClientVersion, BddVersion) {
 		return this.rcjs.getJsBySystem(
 			"Start",
 			{
-				"BattleId": BattleId,
-				"PlayerId": PlayerId,
+				"BattleId": this.BattleId,
+				"PlayerId": this.PlayerId,
 				"ClientVersion": ClientVersion,
 				"BddVersion": BddVersion
 			}
 		);
 	}
-	WaitPlayer(BattleId, PlayerId) {
+	WaitPlayer() {
 		return this.rcjs.getJsBySystem(
 			"WaitPlayer",
 			{
-				"BattleId": BattleId,
-				"PlayerId": PlayerId
+				"BattleId": this.BattleId,
+				"PlayerId": this.PlayerId
 			}
 		);
 	}
-	SendDeck(BattleId, PlayerId, Deck) {
+	SendDeck(Deck) {
 		return this.rcjs.getJsBySystem(
 			"SendDeck",
 			{
-				"BattleId": BattleId,
-				"PlayerId": PlayerId,
+				"BattleId": this.BattleId,
+				"PlayerId": this.PlayerId,
 				"Deck": Deck
 			}
 		);
 	}
-	GetBattle(BattleId, PlayerId, System, CardId) {
+	GetBattle() {
 		return this.rcjs.getJsBySystem(
 			"GetBattle",
 			{
-				"BattleId": BattleId,
-				"PlayerId": PlayerId,
-				"System": System,
-				"CardId": CardId
+				"BattleId": this.BattleId,
+				"PlayerId": this.PlayerId
 			}
 		)
 	}
-	SendBattle(BattleId, PlayerId) {
+	SendBattle(System, CardId) {
 		return this.rcjs.getJsBySystem(
 			"SendBattle",
 			{
-				"BattleId": BattleId,
-				"PlayerId": PlayerId
+				"BattleId": this.BattleId,
+				"PlayerId": this.PlayerId,
+				"System": System,
+				"CardId": CardId
 			}
 		)
 	}
