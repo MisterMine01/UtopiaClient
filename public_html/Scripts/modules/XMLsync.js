@@ -1,6 +1,6 @@
 function XMLsync(url) {
-	const request = new XMLHttpRequest();
-	request.open("POST", url, false);
-	request.send(null);
-	return request;
+    const request = new XMLHttpRequest();
+    request.open("GET", url, false);
+    request.send(null);
+    return request;
 }

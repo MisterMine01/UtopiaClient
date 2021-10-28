@@ -1,8 +1,8 @@
 {
-	"page": "connect.html",
-	"js": [
-		"../account.js"
-	],
-	"css": [
-	]
+    "page": "connect.html",
+    "js": [
+        "../account.js"
+    ],
+    "css": [
+    ]
 }

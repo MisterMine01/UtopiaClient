@@ -1,3 +1,3 @@
 var Game = new class {
-	constructor() {}
+    constructor() {}
 }();

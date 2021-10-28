@@ -1,8 +1,8 @@
 {
-	"page": "loading.html",
-	"js": [
-		"loading.js"
-	],
-	"css": [
-	]
+    "page": "loading.html",
+    "js": [
+        "loading.js"
+    ],
+    "css": [
+    ]
 }

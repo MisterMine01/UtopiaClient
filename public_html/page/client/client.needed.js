@@ -1,3 +1,3 @@
 Game.needed = new class {
-	constructor() {}
+    constructor() {}
 }();

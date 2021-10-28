@@ -1,7 +1,7 @@
 {
-	"page": "game.html",
-	"js": [
-		"game.js"
-	],
-	"css": []
+    "page": "game.html",
+    "js": [
+        "game.js"
+    ],
+    "css": []
 }
