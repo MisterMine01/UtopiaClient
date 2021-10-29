@@ -15,10 +15,12 @@ Game.Battle = new class {
         if (phase_id.include(this.game_data["Phase"]["PhaseType"])) {
             if (self.game_dict["Phase"]["PlayerId"] === Game_data.BS_server.PlayerId) {
                 if (self.game_dict["Phase"]["PhaseUser"] === 0) {
-                    Game_data.BS_server.SendBattle(null, JSON.stringify({"card": card_id, "board_id": board_id}));
+                    Game_data.BS_server.SendBattle(null,
+                        JSON.stringify({"card": card_id, "board_id": board_id}));
                 }
             } else if (this.game_data["Phase"]["PhaseUser"] === 1) {
-                Game_data.BS_server.SendBattle(null, JSON.stringify({"card": card_id, "board_id": board_id}));
+                Game_data.BS_server.SendBattle(null,
+                        JSON.stringify({"card": card_id, "board_id": board_id}));
             }
         }
     }
