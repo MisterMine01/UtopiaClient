@@ -38,5 +38,6 @@ Game.loadbattle = new class {
             return;
         }
         this.Starter = Game_data.BS_server.SendDeck(deck_decoded);
+        change_page("client/game/battlefield");
     }
 }();
