@@ -1,0 +1,32 @@
+.client\.game\.battlefield {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: blue;
+    width: 100%;
+    height: 100%;
+}
+
+.client\.game\.battlefield\.hand {
+    display: flex;
+    flex: 2 0 auto;
+    background-color: red;
+}
+
+.client\.game\.battlefield\.entry {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 7 0 auto;
+    background-color: violet;
+}
+
+.client\.game\.battlefield\.field  {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: black;
+}
+
+.client\.game\.battlefield\.info  {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: red;
+}
