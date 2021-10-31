@@ -14,11 +14,43 @@ Game.Battle = new class {
             }
         }, 100);
     }
-    
+
+    adding_card(div_id, name, click, class_id) {
+        localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].img", function (err, value) {
+            var img_data = value[Game_data.language][name];
+            localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].Bdd", function (err, value) {
+                var att_value = value["Card"][name]["att"];
+                var def_value = value["Card"][name]["def"];
+
+                document.getElementById(div_id).appendChild(function () {
+                    var div = document.createElement("div");
+                    div.className = class_id;
+                    div.setAttribute("onclick", click);
+
+                    var img = document.createElement("img");
+                    img.src = "data:image/png;base64," + img_data;
+                    div.appendChild(img);
+
+                    var att = document.createElement("label");
+                    att.innerHTML = att_value;
+                    att.className = "card_div.att";
+                    div.appendChild(att);
+
+                    var def = document.createElement("label");
+                    def.innerHTML = def_value;
+                    def.className = "card_div.def";
+                    div.appendChild(def);
+
+                    return div;
+                }());
+            });
+        });
+    }
+
     reload_Board(board_name, data) {
         //Adding Board code
     }
-    
+
     reload_battle(new_data) {
         reload_Board("user_battlefield", new_data[this.PlayerId]);
         reload_Board("enemy_battlefield", new_data[this.EnnemyId]);
@@ -30,7 +62,7 @@ Game.Battle = new class {
             if (self.game_dict["Phase"]["PlayerId"] === this.PlayerId) {
                 if (self.game_dict["Phase"]["PhaseUser"] === 0) {
                     Game_data.BS_server.SendBattle(null,
-                        JSON.stringify({"card": card_id, "board_id": board_id}));
+                            JSON.stringify({"card": card_id, "board_id": board_id}));
                 }
             } else if (this.game_data["Phase"]["PhaseUser"] === 1) {
                 Game_data.BS_server.SendBattle(null,
