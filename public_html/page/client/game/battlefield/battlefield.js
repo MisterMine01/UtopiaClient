@@ -47,7 +47,37 @@ Game.Battle = new class {
         });
     }
 
+    change_card(card_id, att, def) {
+        card_id.querySelector(".card_div\.att").contentHTML = att;
+        card_id.querySelector(".card_div\.def").contentHTML = def;
+    }
+
     reload_Board(board_name, data) {
+        let child = document.getElementsById(board_name).children;
+        for (var i = 0; i === data.length; i++) {
+            if (i > child.length) {
+                adding_card(board_name, data[i]["Id"], "onclick", "class"); // NOT FINISHED
+            }
+            switch (data[i]["state"]) {
+                case "Dead":
+                    child[i].hidden = true;
+                    break;
+                case "Attack":
+                    child[i].style.backgroundColor = "red";
+                    break;
+                case "onAttack":
+                    child[i].style.backgroundColor = "yellow";
+                    break;
+                case "Alive":
+                    child[i].hidden = false;
+                    child[i].style.backgroundColor = "white";
+                    break;
+            }
+            if (child[i].querySelector(".card_div\.att").contentHTML !== data[i]["att"] ||
+                    child[i].querySelector(".card_div\.def").contentHTML !== data[i]["def"]) {
+                change_card(child[i], data[i]["att"], data[i]["def"]);
+            }
+        }
         //Adding Board code
     }
 
