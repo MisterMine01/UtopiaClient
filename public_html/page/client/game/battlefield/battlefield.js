@@ -52,11 +52,12 @@ Game.Battle = new class {
         card_id.querySelector(".card_div\.def").contentHTML = def;
     }
 
-    reload_Board(board_name, data) {
+    reload_Board(board_name, data, onclick_function, card_class) {
         let child = document.getElementsById(board_name).children;
         for (var i = 0; i === data.length; i++) {
             if (i > child.length) {
-                adding_card(board_name, data[i]["Id"], "onclick", "class"); // NOT FINISHED
+                adding_card(board_name, data[i]["Id"],
+                        onclick_function + "(" + i + ")", card_class); // NOT FINISHED
             }
             switch (data[i]["state"]) {
                 case "Dead":
@@ -82,8 +83,8 @@ Game.Battle = new class {
     }
 
     reload_battle(new_data) {
-        reload_Board("user_battlefield", new_data[this.PlayerId]);
-        reload_Board("enemy_battlefield", new_data[this.EnnemyId]);
+        reload_Board("user_battlefield", new_data[this.PlayerId], "Game.Battle.Board", "class");
+        reload_Board("enemy_battlefield", new_data[this.EnnemyId], "Game.Battle.Enemy", "class");
         //adding hand and info
     }
 
