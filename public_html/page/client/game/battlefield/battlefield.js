@@ -9,7 +9,8 @@ Game.Battle = new class {
             if (page_loaded === "client/game/battlefield") {
                 var data = Game_data.BS_server.GetBattle();
                 if (JSON.stringify(this.game_data) !== JSON.stringify(data)) {
-                    console.log("changement");
+                    this.game_data = data;
+                    reload_battle(data);
                 }
             }
         }, 100);
@@ -57,7 +58,7 @@ Game.Battle = new class {
         for (var i = 0; i === data.length; i++) {
             if (i > child.length) {
                 adding_card(board_name, data[i]["Id"],
-                        onclick_function + "(" + i + ")", card_class); // NOT FINISHED
+                        onclick_function + "(" + i + ")", card_class);
             }
             switch (data[i]["state"]) {
                 case "Dead":
@@ -79,13 +80,19 @@ Game.Battle = new class {
                 change_card(child[i], data[i]["att"], data[i]["def"]);
             }
         }
-        //Adding Board code
     }
 
     reload_battle(new_data) {
         reload_Board("user_battlefield", new_data[this.PlayerId], "Game.Battle.Board", "class");
         reload_Board("enemy_battlefield", new_data[this.EnnemyId], "Game.Battle.Enemy", "class");
-        //adding hand and info
+        for (let item of document.getElementsById("user_hand").children) {
+            item.remove();
+        }
+        for (let item of new_data[this.PlayerId]["Hand"]) {
+            adding_card("user_hand", item, "Game.Battle.Hand("+item+")", "class");
+        }
+        console.log(new_data);
+        //adding info
     }
 
     sending_battle(card_id, board_id, phase_id) {
