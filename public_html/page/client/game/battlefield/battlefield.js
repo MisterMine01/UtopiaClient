@@ -2,15 +2,16 @@ Game.Battle = new class {
     constructor() {
         this.game_data = Game.loadbattle.Starter;
         this.PlayerId = Game_data.BS_server.PlayerId;
-        Ennemyid = Object.keys(new_data);
+        var Ennemyid = Object.keys(Game.loadbattle.Starter);
         Ennemyid.splice(Ennemyid.indexOf(this.PlayerId), 1);
         this.EnnemyId = Ennemyid[0];
+        this.game_data = {};
         setInterval(function () {
             if (page_loaded === "client/game/battlefield") {
                 var data = Game_data.BS_server.GetBattle();
-                if (JSON.stringify(this.game_data) !== JSON.stringify(data)) {
-                    this.game_data = data;
-                    reload_battle(data);
+                if (JSON.stringify(Game.Battle.game_data) !== JSON.stringify(data)) {
+                    Game.Battle.game_data = data;
+                    Game.Battle.reload_battle(data);
                 }
             }
         }, 100);
@@ -112,7 +113,6 @@ Game.Battle = new class {
     Hand(value) {
         sending_battle(value, 0, [0, 3, 5, 6]);
     }
-
     Board(value) {
         sending_battle(value, 2, [2, 4, 5, 6]);
     }

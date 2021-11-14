@@ -1,6 +1,6 @@
 var ClientApi = new class {
     constructor() {
-        this.rcjs = new RcJsApi("http://github/UtopiaPrincipaleServer/");
+        this.rcjs = new RcJsApi(JSON.parse(XMLsync("Utopia.json").responseText)["principal_server"]);
     }
     CreateAccount(username, passw) {
         return this.rcjs.getJsBySystem(

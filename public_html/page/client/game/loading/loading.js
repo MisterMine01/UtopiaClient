@@ -3,7 +3,7 @@ Game.loadbattle = new class {
         setInterval(function () {
             if (page_loaded === "client/game/loading") {
                 if (Game.loadDeck.deck !== "") {
-                    deck = Game.loadDeck.deck;
+                    var deck = Game.loadDeck.deck;
                     Game.loadDeck.deck = "";
                     Game.loadbattle.load_game("B1", deck);
                 } else {
@@ -24,7 +24,9 @@ Game.loadbattle = new class {
         }
         var server = await localforage.getItem("Utopia.Launcher.server");
         var server = server[Game_data.battle_name];
-        var client_token = await localforage.getItem("Client.Account")["Token"];
+        var account = await localforage.getItem("Client.Account")
+        var client_token = account["Token"];
+        console.log(client_token);
         Game_data.BS_server = new BattleSystemApi(server + "Battle/", battlefield_id, client_token);
         var Bdd_version = await localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].version");
         var data = Game_data.BS_server.Start(1, Bdd_version);
@@ -34,7 +36,7 @@ Game.loadbattle = new class {
         do {
             data = Game_data.BS_server.WaitPlayer();
         } while (data["Error"] === "Wait");
-        if (data.contains("Error")) {
+        if (Object.keys(data).includes("Error")) {
             return;
         }
         this.Starter = Game_data.BS_server.SendDeck(deck_decoded);
