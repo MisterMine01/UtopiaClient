@@ -42,8 +42,11 @@ Game.loadDeck = new class {
             }
         }, 100);
     }
-    use_deck(value) {
-        this.deck = value;
-        change_page("client/game/loading");
+    use_deck(deck) {
+        var that = this;
+        localforage.getItem("Utopia.[" + Game_data.battle_name + "].Deck", function (err, value) {
+            that.deck = value[deck];
+            change_page("client/game/loading");
+        });
     }
 }();

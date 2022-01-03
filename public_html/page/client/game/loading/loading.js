@@ -16,6 +16,7 @@ Game.loadbattle = new class {
     }
 
     async load_game(battlefield_id, deck) {
+        console.log(deck);
         var deck_decoded = [];
         for (let item of Object.keys(deck)) {
             for (var i = 0; i < deck[item]; i++) {
@@ -39,6 +40,7 @@ Game.loadbattle = new class {
         if (Object.keys(data).includes("Error")) {
             return;
         }
+        console.log(deck_decoded);
         this.Starter = Game_data.BS_server.SendDeck(deck_decoded);
         change_page("client/game/battlefield");
     }

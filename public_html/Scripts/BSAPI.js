@@ -31,7 +31,7 @@ class BattleSystemApi {
                 {
                     "BattleId": this.BattleId,
                     "PlayerId": this.PlayerId,
-                    "Deck": Deck
+                    "Deck": JSON.stringify(Deck)
                 }
         );
     }

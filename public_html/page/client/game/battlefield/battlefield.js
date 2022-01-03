@@ -18,6 +18,7 @@ Game.Battle = new class {
     }
 
     adding_card(div_id, name, click, class_id) {
+        console.log(click)
         localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].img", function (err, value) {
             var img_data = value[Game_data.language][name];
             localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].Bdd", function (err, value) {
@@ -55,7 +56,7 @@ Game.Battle = new class {
     }
 
     reload_Board(board_name, data, onclick_function, card_class) {
-        let child = document.getElementsById(board_name).children;
+        let child = document.getElementById(board_name).children;
         for (var i = 0; i === data.length; i++) {
             if (i > child.length) {
                 adding_card(board_name, data[i]["Id"],
@@ -78,28 +79,28 @@ Game.Battle = new class {
             }
             if (child[i].querySelector(".card_div\.att").contentHTML !== data[i]["att"] ||
                     child[i].querySelector(".card_div\.def").contentHTML !== data[i]["def"]) {
-                change_card(child[i], data[i]["att"], data[i]["def"]);
+                this.change_card(child[i], data[i]["att"], data[i]["def"]);
             }
         }
     }
 
     reload_battle(new_data) {
-        reload_Board("user_battlefield", new_data[this.PlayerId], "Game.Battle.Board", "class");
-        reload_Board("enemy_battlefield", new_data[this.EnnemyId], "Game.Battle.Enemy", "class");
-        for (let item of document.getElementsById("user_hand").children) {
+        this.reload_Board("user_battlefield", new_data[this.PlayerId], "Game.Battle.Board", "class");
+        this.reload_Board("enemy_battlefield", new_data[this.EnnemyId], "Game.Battle.Enemy", "class");
+        for (let item of document.getElementById("user_hand").children) {
             item.remove();
         }
         for (let item of new_data[this.PlayerId]["Hand"]) {
-            adding_card("user_hand", item, "Game.Battle.Hand("+item+")", "class");
+            this.adding_card("user_hand", item, "Game.Battle.Hand(\""+item+"\")", "client.field.hand");
         }
         console.log(new_data);
         //adding info
     }
 
     sending_battle(card_id, board_id, phase_id) {
-        if (phase_id.include(this.game_data["Phase"]["PhaseType"])) {
-            if (self.game_dict["Phase"]["PlayerId"] === this.PlayerId) {
-                if (self.game_dict["Phase"]["PhaseUser"] === 0) {
+        if (phase_id.includes(this.game_data["Phase"]["PhaseType"])) {
+            if (this.game_data["Phase"]["PlayerId"] === this.PlayerId) {
+                if (this.game_data["Phase"]["PhaseUser"] === 0) {
                     Game_data.BS_server.SendBattle(null,
                             JSON.stringify({"card": card_id, "board_id": board_id}));
                 }
@@ -111,13 +112,13 @@ Game.Battle = new class {
     }
 
     Hand(value) {
-        sending_battle(value, 0, [0, 3, 5, 6]);
+        this.sending_battle(value, 0, [0, 3, 5, 6]);
     }
     Board(value) {
-        sending_battle(value, 2, [2, 4, 5, 6]);
+        this.sending_battle(value, 2, [2, 4, 5, 6]);
     }
     Enemy(value) {
-        sending_battle(value, 1, [1, 3, 4, 6]);
+        this.sending_battle(value, 1, [1, 3, 4, 6]);
     }
     Pass() {
         Game_data.BS_server.SendBattle("Pass", null);
