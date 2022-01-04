@@ -1,0 +1,3 @@
+carte non visible dans board
+css des cartes des board
+info
