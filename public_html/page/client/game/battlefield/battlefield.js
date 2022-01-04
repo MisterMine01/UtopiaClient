@@ -106,7 +106,6 @@ Game.Battle = new class {
         document.getElementById("field.info.enemy.eclat").innerHTML = String(new_data[this.EnnemyId]["Eclat"])+"E";
         document.getElementById("field.info.user.life").innerHTML = String(new_data[this.PlayerId]["Life"])+"PV";
         document.getElementById("field.info.user.eclat").innerHTML = String(new_data[this.PlayerId]["Eclat"])+"E";
-        console.log(new_data);
     }
 
     sending_battle(card_id, board_id, phase_id) {

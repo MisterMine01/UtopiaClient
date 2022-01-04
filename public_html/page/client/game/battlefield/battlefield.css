@@ -86,7 +86,7 @@
 /*CARD BATTLEFIELD*/
 
 .client\.field\.battle {
-    position: relative;
+    position: absolute;
     width: auto;
     height: 32vh;
 }
