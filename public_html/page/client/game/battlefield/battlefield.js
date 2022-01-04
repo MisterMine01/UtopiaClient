@@ -51,16 +51,17 @@ Game.Battle = new class {
     }
 
     change_card(card_id, att, def) {
-        card_id.querySelector(".card_div\.att").contentHTML = att;
-        card_id.querySelector(".card_div\.def").contentHTML = def;
+        card_id.querySelector(".card_div\\.att").innerHTML = att;
+        card_id.querySelector(".card_div\\.def").innerHTML = def;
     }
 
     reload_Board(board_name, data, onclick_function, card_class) {
         let child = document.getElementById(board_name).children;
-        for (var i = 0; i === data.length; i++) {
-            if (i > child.length) {
-                adding_card(board_name, data[i]["Id"],
-                        onclick_function + "(" + i + ")", card_class);
+        for (var i = 0; i < data.length; i++) {
+            if (i > child.length - 1) {
+                this.adding_card(board_name, data[i]["Id"],
+                    onclick_function + "(" + i + ")", card_class);
+                continue;
             }
             switch (data[i]["state"]) {
                 case "Dead":
@@ -77,24 +78,35 @@ Game.Battle = new class {
                     child[i].style.backgroundColor = "white";
                     break;
             }
-            if (child[i].querySelector(".card_div\.att").contentHTML !== data[i]["att"] ||
-                    child[i].querySelector(".card_div\.def").contentHTML !== data[i]["def"]) {
+            if (child[i].querySelector(".card_div\\.att").innerHTML !== data[i]["att"] ||
+                child[i].querySelector(".card_div\\.def").innerHTML !== data[i]["def"]) {
                 this.change_card(child[i], data[i]["att"], data[i]["def"]);
             }
         }
     }
 
     reload_battle(new_data) {
-        this.reload_Board("user_battlefield", new_data[this.PlayerId], "Game.Battle.Board", "class");
-        this.reload_Board("enemy_battlefield", new_data[this.EnnemyId], "Game.Battle.Enemy", "class");
         for (let item of document.getElementById("user_hand").children) {
             item.remove();
         }
         for (let item of new_data[this.PlayerId]["Hand"]) {
-            this.adding_card("user_hand", item, "Game.Battle.Hand(\""+item+"\")", "client.field.hand");
+            this.adding_card("user_hand", item, "Game.Battle.Hand(\"" + item + "\")", "client.field.hand");
         }
+        this.reload_Board("user_battlefield", new_data[this.PlayerId]["Board"], "Game.Battle.Board", "client.field.battle");
+        this.reload_Board("enemy_battlefield", new_data[this.EnnemyId]["Board"], "Game.Battle.Enemy", "client.field.battle");
+        var man = "";
+        if (this.PlayerId === new_data["Phase"]["PlayerId"]) {
+            man = "Your ";
+        } else {
+            man = "Ennemy ";
+        }
+
+        document.getElementById("field.info.phase").innerHTML = man + new_data["Phase"]["Phase"];
+        document.getElementById("field.info.enemy.life").innerHTML = String(new_data[this.EnnemyId]["Life"])+"PV";
+        document.getElementById("field.info.enemy.eclat").innerHTML = String(new_data[this.EnnemyId]["Eclat"])+"E";
+        document.getElementById("field.info.user.life").innerHTML = String(new_data[this.PlayerId]["Life"])+"PV";
+        document.getElementById("field.info.user.eclat").innerHTML = String(new_data[this.PlayerId]["Eclat"])+"E";
         console.log(new_data);
-        //adding info
     }
 
     sending_battle(card_id, board_id, phase_id) {
@@ -102,11 +114,11 @@ Game.Battle = new class {
             if (this.game_data["Phase"]["PlayerId"] === this.PlayerId) {
                 if (this.game_data["Phase"]["PhaseUser"] === 0) {
                     Game_data.BS_server.SendBattle(null,
-                            JSON.stringify({"card": card_id, "board_id": board_id}));
+                        JSON.stringify({ "card": card_id, "board_id": board_id }));
                 }
             } else if (this.game_data["Phase"]["PhaseUser"] === 1) {
                 Game_data.BS_server.SendBattle(null,
-                        JSON.stringify({"card": card_id, "board_id": board_id}));
+                    JSON.stringify({ "card": card_id, "board_id": board_id }));
             }
         }
     }
