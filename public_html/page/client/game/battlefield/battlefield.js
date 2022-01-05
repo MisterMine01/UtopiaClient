@@ -19,35 +19,31 @@ Game.Battle = new class {
 
     adding_card(div_id, name, click, class_id) {
         console.log(click)
-        localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].img", function (err, value) {
-            var img_data = value[Game_data.language][name];
-            localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].Bdd", function (err, value) {
-                var att_value = value["Card"][name]["att"];
-                var def_value = value["Card"][name]["def"];
+        var img_data = Game_data.img[name];
+        var att_value = Game_data.db["Card"][name]["att"];
+        var def_value = Game_data.db["Card"][name]["def"];
 
-                document.getElementById(div_id).appendChild(function () {
-                    var div = document.createElement("div");
-                    div.className = class_id;
-                    div.setAttribute("onclick", click);
+        document.getElementById(div_id).appendChild(function () {
+            var div = document.createElement("div");
+            div.className = class_id;
+            div.setAttribute("onclick", click);
 
-                    var img = document.createElement("img");
-                    img.src = "data:image/png;base64," + img_data;
-                    div.appendChild(img);
+            var img = document.createElement("img");
+            img.src = "data:image/png;base64," + img_data;
+            div.appendChild(img);
 
-                    var att = document.createElement("label");
-                    att.innerHTML = att_value;
-                    att.className = "card_div.att";
-                    div.appendChild(att);
+            var att = document.createElement("label");
+            att.innerHTML = att_value;
+            att.className = "card_div.att";
+            div.appendChild(att);
 
-                    var def = document.createElement("label");
-                    def.innerHTML = def_value;
-                    def.className = "card_div.def";
-                    div.appendChild(def);
+            var def = document.createElement("label");
+            def.innerHTML = def_value;
+            def.className = "card_div.def";
+            div.appendChild(def);
 
-                    return div;
-                }());
-            });
-        });
+            return div;
+        }());
     }
 
     change_card(card_id, att, def) {
@@ -102,10 +98,10 @@ Game.Battle = new class {
         }
 
         document.getElementById("field.info.phase").innerHTML = man + new_data["Phase"]["Phase"];
-        document.getElementById("field.info.enemy.life").innerHTML = String(new_data[this.EnnemyId]["Life"])+"PV";
-        document.getElementById("field.info.enemy.eclat").innerHTML = String(new_data[this.EnnemyId]["Eclat"])+"E";
-        document.getElementById("field.info.user.life").innerHTML = String(new_data[this.PlayerId]["Life"])+"PV";
-        document.getElementById("field.info.user.eclat").innerHTML = String(new_data[this.PlayerId]["Eclat"])+"E";
+        document.getElementById("field.info.enemy.life").innerHTML = String(new_data[this.EnnemyId]["Life"]) + "PV";
+        document.getElementById("field.info.enemy.eclat").innerHTML = String(new_data[this.EnnemyId]["Eclat"]) + "E";
+        document.getElementById("field.info.user.life").innerHTML = String(new_data[this.PlayerId]["Life"]) + "PV";
+        document.getElementById("field.info.user.eclat").innerHTML = String(new_data[this.PlayerId]["Eclat"]) + "E";
     }
 
     sending_battle(card_id, board_id, phase_id) {

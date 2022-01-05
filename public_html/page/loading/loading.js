@@ -21,10 +21,13 @@ async function Download(battle_server, language) {
         }
         localforage.setItem("Utopia.DB.[" + battle_server + "].img", db_image);
         localforage.setItem("Utopia.DB.[" + battle_server + "].version", server_version);
-
     }
+    var img = await localforage.getItem("Utopia.DB.[" + battle_server + "].img");
+    var db = await localforage.getItem("Utopia.DB.[" + battle_server + "].Bdd");
     Game_data.battle_name = Launcher.battle_use;
     Game_data.language = Launcher.language_use;
+    Game_data.img = img[Game_data.language];
+    Game_data.db = db;
     change_page("client");
 }
 Download(Launcher.battle_use, Launcher.language_use);
