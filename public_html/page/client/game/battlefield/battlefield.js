@@ -57,7 +57,6 @@ Game.Battle = new class {
             if (i > child.length - 1) {
                 this.adding_card(board_name, data[i]["Id"],
                     onclick_function + "(" + i + ")", card_class);
-                continue;
             }
             switch (data[i]["state"]) {
                 case "Dead":

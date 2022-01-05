@@ -16,7 +16,7 @@ Game.deck.creator = new class {
                 for (let item of Object.keys(Game_data.db["Card"])) {
                     if (!already_created_value.includes(item)) {
                         console.log(item);
-                        Game.deck.creator.create_card("client.deck.creator.all_card", item, "Game.deck.creator.add_card('" + item + "')");
+                        Game.deck.creator.create_card(document.getElementById("client.deck.creator.all_card"), item, "Game.deck.creator.add_card('" + item + "')");
                     }
                 }
                 if (data !== "") {
@@ -85,7 +85,7 @@ Game.deck.creator = new class {
                 label.className = "client.deck.creator.card_counter.label";
                 div.appendChild(label);
 
-                that.create_card(name + ".counter", name, "Game.deck.creator.delete_card('" + name + "')");
+                that.create_card(div, name, "Game.deck.creator.delete_card('" + name + "')");
 
                 return div;
             }(this));
@@ -101,36 +101,36 @@ Game.deck.creator = new class {
         }
     }
 
-    create_card(div_id, name, click) {
-        var img_data = Game_data.img[name];
+    create_card(div, name, click) {
+            var img_data = Game_data.img[name];
 
-        var att_value = Game_data.db["Card"][name]["att"];
-        var def_value = Game_data.db["Card"][name]["def"];
+            var att_value = Game_data.db["Card"][name]["att"];
+            var def_value = Game_data.db["Card"][name]["def"];
 
-        document.getElementById(div_id).appendChild(function () {
-            var div = document.createElement("div");
-            div.className = "client.deck.creator.card";
-            div.id = name;
-            console.log(click);
-            div.setAttribute("onclick", click);
+            div.appendChild(function () {
+                var div = document.createElement("div");
+                div.className = "client.deck.creator.card";
+                div.id = name;
+                console.log(click);
+                div.setAttribute("onclick", click);
 
-            var img = document.createElement("img");
-            img.src = "data:image/png;base64," + img_data;
-            img.className = "client.deck.creator.card.img";
-            div.appendChild(img);
+                var img = document.createElement("img");
+                img.src = "data:image/png;base64," + img_data;
+                img.className = "client.deck.creator.card.img";
+                div.appendChild(img);
 
-            var att = document.createElement("label");
-            att.innerHTML = att_value;
-            att.className = "client.deck.creator.card.att";
-            div.appendChild(att);
+                var att = document.createElement("label");
+                att.innerHTML = att_value;
+                att.className = "client.deck.creator.card.att";
+                div.appendChild(att);
 
-            var def = document.createElement("label");
-            def.innerHTML = def_value;
-            def.className = "client.deck.creator.card.def";
-            div.appendChild(def);
+                var def = document.createElement("label");
+                def.innerHTML = def_value;
+                def.className = "client.deck.creator.card.def";
+                div.appendChild(def);
 
-            return div;
-        }());
+                return div;
+            }());
     }
 }();
 

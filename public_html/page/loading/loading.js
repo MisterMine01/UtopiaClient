@@ -27,6 +27,7 @@ async function Download(battle_server, language) {
     Game_data.battle_name = Launcher.battle_use;
     Game_data.language = Launcher.language_use;
     Game_data.img = img[Game_data.language];
+    console.log(Game_data.img);
     Game_data.db = db;
     change_page("client");
 }
