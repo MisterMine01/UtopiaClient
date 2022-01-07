@@ -57,6 +57,7 @@ Game.Battle = new class {
             if (i > child.length - 1) {
                 this.adding_card(board_name, data[i]["Id"],
                     onclick_function + "(" + i + ")", card_class);
+                child = document.getElementById(board_name).children;
             }
             switch (data[i]["state"]) {
                 case "Dead":
@@ -65,7 +66,7 @@ Game.Battle = new class {
                 case "Attack":
                     child[i].style.backgroundColor = "red";
                     break;
-                case "onAttack":
+                case "OnAttack":
                     child[i].style.backgroundColor = "yellow";
                     break;
                 case "Alive":

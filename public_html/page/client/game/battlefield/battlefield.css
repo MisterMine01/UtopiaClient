@@ -28,7 +28,7 @@
 }
 
 .client\.game\.battlefield\.field  {
-    display: flex;
+    display: -webkit-box;
     height: 33vh;
     width: 80vw;
     overflow-x: scroll;
@@ -97,7 +97,7 @@
 .client\.field\.battle {
     position: relative;
     width: auto;
-    height: 32vh;
+    height: 31vh;
 }
 .client\.field\.battle img {
     width: 95%;
