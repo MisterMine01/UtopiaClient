@@ -19,8 +19,8 @@ async function Download(battle_server, language) {
                 db_image[value] = db_exist[value];
             })
         }
-        localforage.setItem("Utopia.DB.[" + battle_server + "].img", db_image);
-        localforage.setItem("Utopia.DB.[" + battle_server + "].version", server_version);
+        await localforage.setItem("Utopia.DB.[" + battle_server + "].img", db_image);
+        await localforage.setItem("Utopia.DB.[" + battle_server + "].version", server_version);
     }
     var img = await localforage.getItem("Utopia.DB.[" + battle_server + "].img");
     var db = await localforage.getItem("Utopia.DB.[" + battle_server + "].Bdd");

@@ -37,6 +37,7 @@
 
 .client\.game\.battlefield\.info  {
     display: flex;
+    font-size: 2.5vh;
     height: 34vh;
     flex-flow: column nowrap;
     background-color: red;
