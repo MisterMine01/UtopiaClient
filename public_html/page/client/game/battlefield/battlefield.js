@@ -62,16 +62,17 @@ Game.Battle = new class {
             switch (data[i]["state"]) {
                 case "Dead":
                     child[i].hidden = true;
+                    child[i].style.backgroundColor = Game_data.db["State"]["Dead"];
                     break;
                 case "Attack":
-                    child[i].style.backgroundColor = "red";
+                    child[i].style.backgroundColor = Game_data.db["State"]["Attack"];
                     break;
                 case "OnAttack":
-                    child[i].style.backgroundColor = "yellow";
+                    child[i].style.backgroundColor = Game_data.db["State"]["OnAttack"];
                     break;
                 case "Alive":
                     child[i].hidden = false;
-                    child[i].style.backgroundColor = "white";
+                    child[i].style.backgroundColor = Game_data.db["State"]["Alive"];
                     break;
             }
             if (child[i].querySelector(".card_div\\.att").innerHTML !== data[i]["att"] ||

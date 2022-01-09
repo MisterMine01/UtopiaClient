@@ -1,9 +1,0 @@
-page_loading
-page_main
-authentification:	page_connection
-			page_création
-deck:			page_getdeck
-			page_deckcreation
-play:			page_getdeck
-			page_connection
-			page_game
