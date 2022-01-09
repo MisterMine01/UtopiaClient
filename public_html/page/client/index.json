@@ -6,5 +6,6 @@
         "client.needed.js"
     ],
     "css": [
+        "client.css"
     ]
 }

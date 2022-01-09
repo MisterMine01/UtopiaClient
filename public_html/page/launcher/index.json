@@ -5,5 +5,8 @@
         "launcher.rod.js",
         "launcher.main.js"
     ],
-    "css": []
+    "css": [
+        "launcher_type.css",
+        "launcher.css"
+    ]
 }

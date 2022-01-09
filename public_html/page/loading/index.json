@@ -4,5 +4,6 @@
         "loading.js"
     ],
     "css": [
+        "loading.css"
     ]
 }

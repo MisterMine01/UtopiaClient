@@ -6,5 +6,7 @@
         "launcher.language.js"
     ],
     "css": [
+        "language.css",
+        "../launcher_type.css"
     ]
 }

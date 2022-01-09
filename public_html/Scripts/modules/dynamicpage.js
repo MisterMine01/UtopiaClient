@@ -12,7 +12,10 @@ var page_loaded = "";
 function change_page(page_name) {
     console.log("change page to " + page_name);
     let data = JSON.parse(XMLsync("page/" + page_name + "/index.json").responseText);
-    document.body.innerHTML = XMLsync("page/" + page_name + "/" + data["page"]).responseText;
+    var div = document.createElement("div")
+    div.id = page_name;
+    div.innerHTML =  XMLsync("page/" + page_name + "/" + data["page"]).responseText
+    document.body.innerHTML = div.outerHTML;
 
     for (let item of data["css"]) {
         console.log(data);

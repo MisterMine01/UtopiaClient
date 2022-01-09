@@ -4,5 +4,6 @@
         "../account.js"
     ],
     "css": [
+        "connect.css"
     ]
 }

@@ -3,5 +3,7 @@
     "js": [
         "deck.js"
     ],
-    "css": []
+    "css": [
+        "deck.css"
+    ]
 }

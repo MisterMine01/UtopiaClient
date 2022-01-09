@@ -6,5 +6,7 @@
         "launcher.battle.js"
     ],
     "css": [
+        "battle.css",
+        "../launcher_type.css"
     ]
 }
