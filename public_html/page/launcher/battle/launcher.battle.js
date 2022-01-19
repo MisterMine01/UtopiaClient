@@ -9,13 +9,13 @@ Launcher.battle = new class {
                 }
                 var already_created_value = [];
                 let already_created = document.getElementById("launcher.battle.battle_list");
-                for (let item of already_created.children) {
+                for (let i=0; i<already_created.children.length; i++) {
                     console.log(Object.keys(value).includes(item.id));
                     if (Object.keys(value).includes(item.id)) {
                         already_created_value.push(item.id);
                     } else {
-                        console.log(item);
-                        item.remove();
+                        already_created.children[i].remove();
+                        i--;
                     }
                 }
                 for (let item of Object.keys(value)) {
