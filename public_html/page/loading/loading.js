@@ -1,5 +1,5 @@
 async function Download(battle_server, language) {
-    var server = await localforage.getItem("Utopia.Launcher.server");
+    var server = PBattleApi.ResearchServer(battle_server);
     Game_data.Battle_server = new BattleApi(server[battle_server]);
     var server_version = Game_data.Battle_server.GetBddVersion()[0];
     if ((await localforage.getItem("Utopia.DB.[" + battle_server + "].version") !== server_version) ||

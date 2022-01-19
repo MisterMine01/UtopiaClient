@@ -1,9 +1,14 @@
 Launcher.battle = new class {
     constructor(get_id) {
         this.get_id = get_id;
+        this.search = "dvzvevezzvzgeaebrebe";
         this.battle_interval = setInterval(function() {
             if (page_loaded === "launcher/battle") {
+                if (Launcher.battle.search == document.getElementById("launcher.battle.new_server").value) {
+                    return;
+                }
                 let value = PBattleApi.ResearchServer(document.getElementById("launcher.battle.new_server").value);
+                Launcher.battle.search = document.getElementById("launcher.battle.new_server").value;
                 if (value === undefined) {
                     return;
                 }
