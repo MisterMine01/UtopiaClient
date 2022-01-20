@@ -11,6 +11,7 @@
 
 #launcher\/battle #launcher\.battle\.battle_list {
     display: flex;
+    flex-flow: column;
     justify-content: center;
     text-align: center;
 }
