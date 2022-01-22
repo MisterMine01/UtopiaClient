@@ -1,6 +1,6 @@
 Game.loadbattle = new class {
     constructor() {
-        setInterval(function () {
+        setInterval(function() {
             if (page_loaded === "client/game/loading") {
                 if (Game.loadDeck.deck !== "") {
                     var deck = Game.loadDeck.deck;
@@ -25,7 +25,7 @@ Game.loadbattle = new class {
         }
         var server = await localforage.getItem("Utopia.Launcher.server");
         var server = server[Game_data.battle_name];
-        var account = await localforage.getItem("Client.Account")
+        var account = await Launcher.gigly.getItem("Client.Account")
         var client_token = account["Token"];
         console.log(client_token);
         Game_data.BS_server = new BattleSystemApi(server + "Battle/", battlefield_id, client_token);

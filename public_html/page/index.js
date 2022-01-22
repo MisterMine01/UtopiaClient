@@ -1,4 +1,5 @@
-localforage.getItem("Client.Account", function (err, value) {
+var temp = localforage.createInstance({ name: "Gigly" });
+temp.getItem("Client.Account", function(err, value) {
     if (value === null) {
         change_page("account/connection");
     } else {
@@ -6,7 +7,7 @@ localforage.getItem("Client.Account", function (err, value) {
         if (Object.keys(req).includes("Error")) {
             change_page("account/connection");
         } else {
-            localforage.setItem("Client.Account", req);
+            temp.setItem("Client.Account", req);
             change_page("launcher");
         }
     }

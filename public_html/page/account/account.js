@@ -1,6 +1,6 @@
 var Account = new class {
     constructor() {
-
+        this.gigly = localforage.createInstance({ name: "Gigly" });
     }
 
     pass_to_create() {
@@ -15,11 +15,11 @@ var Account = new class {
     create_account() {
         if (document.getElementsByName("account.password.input").value === document.getElementsByName("account.password2.input").value) {
             var request = ClientApi.CreateAccount(document.getElementById("account.name.input").value,
-                    document.getElementById("account.password.input").value);
+                document.getElementById("account.password.input").value);
             if (Object.keys(request).includes("Error")) {
                 document.getElementById("account.error").innerHTML = request["Error"];
             } else {
-                localforage.setItem("Client.Account", request);
+                this.gigly.setItem("Client.Account", request);
                 change_page("launcher");
             }
         } else {
@@ -29,11 +29,11 @@ var Account = new class {
 
     connect_account() {
         var request = ClientApi.ConnectAccount(document.getElementById("account.name.input").value,
-                document.getElementById("account.password.input").value);
+            document.getElementById("account.password.input").value);
         if (Object.keys(request).includes("Error")) {
             document.getElementById("account.error").innerHTML = request["Error"];
         } else {
-            localforage.setItem("Client.Account", request);
+            this.gigly.setItem("Client.Account", request);
             change_page("launcher");
         }
     }

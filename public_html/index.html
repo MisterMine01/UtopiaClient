@@ -15,6 +15,10 @@
     <script class="dynamic_script">
         window.addEventListener("load", function() {
             change_page("");
+            localforage = localforage.createInstance({
+                name: "Utopia",
+                storeName: "Utopia"
+            });
         });
     </script>
     <style>

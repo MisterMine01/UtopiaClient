@@ -3,13 +3,14 @@ var Launcher = new class {
         this.battle_use = "";
         this.language_use = "";
         this.save_launcher_data();
+        this.gigly = localforage.createInstance({ name: "Gigly" });
     }
 
     save_launcher_data(battle_server = undefined, language = undefined) {
         var that = this;
-        localforage.getItem("Utopia.Launcher.main", function (err, value) {
+        localforage.getItem("Utopia.Launcher.main", function(err, value) {
             if (value === null) {
-                var data = {"ServerUsed": null, "LanguageUsed": null};
+                var data = { "ServerUsed": null, "LanguageUsed": null };
             } else {
                 var data = value;
             }
