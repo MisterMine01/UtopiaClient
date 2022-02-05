@@ -23,8 +23,8 @@ Game.loadbattle = new class {
                 deck_decoded.push(item);
             }
         }
-        var server = await localforage.getItem("Utopia.Launcher.server");
-        var server = server[Game_data.battle_name];
+        var server = PBattleApi.ResearchServer(Game_data.battle_name);
+        server = server[Game_data.battle_name];
         var account = await Launcher.gigly.getItem("Client.Account")
         var client_token = account["Token"];
         console.log(client_token);
