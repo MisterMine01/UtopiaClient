@@ -10,7 +10,9 @@ Launcher.battle = new class {
             if (Launcher.battle.search == document.getElementById("launcher.battle.new_server").value) {
                 return;
             }
-            let value = PBattleApi.ResearchServer(document.getElementById("launcher.battle.new_server").value);
+            let value = PBattleApi.ResearchServer(
+                document.getElementById("launcher.battle.new_server").value,
+                Launcher.account["Token"], Launcher.account["A-Token"]);
             Launcher.battle.search = document.getElementById("launcher.battle.new_server").value;
             if (value === undefined) {
                 return;
@@ -34,7 +36,7 @@ Launcher.battle = new class {
 
 
                         var label = document.createElement("label");
-                        label.innerHTML = item;
+                        label.innerHTML = value[item]["name"];
                         label.className = "launcher.battle.battle_list.battle_data.name";
                         div.appendChild(label);
 
@@ -54,7 +56,9 @@ Launcher.battle = new class {
     }
 
     set_server(battle_server) {
-        var value = PBattleApi.ResearchServer("");
+        var value = PBattleApi.ResearchServer("",
+            Launcher.account["Token"],
+            Launcher.account["A-Token"]);
         if (Object.keys(value).includes(battle_server)) {
             Launcher.save_launcher_data(battle_server);
         }

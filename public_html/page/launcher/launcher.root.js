@@ -4,6 +4,10 @@ var Launcher = new class {
         this.language_use = "";
         this.save_launcher_data();
         this.gigly = localforage.createInstance({ name: "Gigly" });
+        this.account = null
+        this.gigly.getItem("Client.Account", function(err, value) {
+            Launcher.account = value;
+        });
     }
 
     save_launcher_data(battle_server = undefined, language = undefined) {
