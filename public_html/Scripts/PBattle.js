@@ -12,4 +12,42 @@ var PBattleApi = new class {
             }
         );
     }
+    CreateServer(ServerName, userToken, Atoken, url) {
+        return this.rcjs.getJsBySystem(
+            "CreateServer", {
+                "ServerName": ServerName,
+                "userToken": userToken,
+                "Atoken": Atoken,
+                "url": url
+            }
+        );
+    }
+    GetServerByToken(searchToken, userToken, Atoken) {
+        return this.rcjs.getJsBySystem(
+            "GetServerByToken", {
+                "tokenSearch": searchToken,
+                "userToken": userToken,
+                "Atoken": Atoken
+            }
+        );
+    }
+    GetServerInfo(ServerToken, userToken, Atoken) {
+        return this.rcjs.getJsBySystem(
+            "GetServerInfo", {
+                "ServerToken": ServerToken,
+                "userToken": userToken,
+                "Atoken": Atoken
+            }
+        );
+    }
+    SendServerInfo(ServerToken, userToken, Atoken, newInfo) {
+        return this.rcjs.getJsBySystem(
+            "SendServerInfo", {
+                "ServerToken": ServerToken,
+                "userToken": userToken,
+                "Atoken": Atoken,
+                "newInfo": JSON.stringify(newInfo)
+            }
+        );
+    }
 }();
