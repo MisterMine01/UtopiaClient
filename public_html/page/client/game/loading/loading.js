@@ -23,12 +23,12 @@ Game.loadbattle = new class {
                 deck_decoded.push(item);
             }
         }
-        var server = PBattleApi.ResearchServer(Game_data.battle_name);
-        server = server[Game_data.battle_name];
         var account = await Launcher.gigly.getItem("Client.Account")
         var client_token = account["Token"];
+        var server = PBattleApi.ResearchServer(Game_data.battle_name, client_token, account["A-Token"]);
+        server = server[Game_data.battle_name];
         console.log(client_token);
-        Game_data.BS_server = new BattleSystemApi(server + "Battle/", battlefield_id, client_token);
+        Game_data.BS_server = new BattleSystemApi(server["url"] + "Battle/", battlefield_id, client_token);
         var Bdd_version = await localforage.getItem("Utopia.DB.[" + Game_data.battle_name + "].version");
         var data = Game_data.BS_server.Start(1, Bdd_version);
         if (data["System"] !== "Wait") {
